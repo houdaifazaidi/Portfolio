@@ -1,0 +1,29 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create .nojekyll file
+        run: touch ./.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # Use the automatic GitHub Actions token which is provided by GitHub
+          # for workflows: no need to create a custom secret named TOKEN.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # deploy from repo root
+          cname: false  # disable Jekyll processing
