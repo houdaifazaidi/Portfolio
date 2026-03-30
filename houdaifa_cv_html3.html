@@ -1,153 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Houdaifa Zaidi - CV</title>
-<style>
-  body {
-    font-family: 'Inter', Arial, sans-serif;
-    background: #eef0f4;
-    margin: 0;
-    padding: 0;
-    color: #1e1e1e;
-  }
-  .cv-wrapper {
-    width: 900px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 50px;
-    border-radius: 18px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
-  }
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 35px;
-  }
-  .photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: #dcdcdc;
-    overflow: hidden;
-  }
-  .photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  h1 {
-    margin: 0;
-    font-size: 34px;
-    font-weight: 800;
-  }
-  h2 {
-    font-size: 20px;
-    margin-top: 6px;
-    color: #555;
-  }
-  .section {
-    margin-top: 40px;
-  }
-  .section-title {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: #222;
-    margin-bottom: 15px;
-    border-left: 5px solid #3b82f6;
-    padding-left: 12px;
-  }
-  ul {
-    padding-left: 20px;
-    line-height: 1.6;
-  }
-  .two-col {
-    display: flex;
-    gap: 50px;
-  }
-  .col { width: 50%; }
-  a { color: #3b82f6; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Houdaifa Zaidi - CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --primary: #6c63ff;
+      --secondary: #00b4d8;
+      --green: #00a070;
+      --red: #e04a60;
+      --text: #1a1e29;
+      --text-muted: #4a5568;
+      --border: #e2e8f0;
+      --glass: #f7fafc;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Set base font-size a bit smaller to cascade down easily */
+    html {
+      font-size: 14px;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #f0f2f5;
+      color: var(--text);
+      line-height: 1.4;
+      padding: 20px 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--secondary);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .cv-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 15px;
+    }
+
+    .photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      /* border: 3px solid var(--primary); */
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .contact-info div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .contact-info i {
+      color: var(--primary);
+    }
+
+    .section {
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+    }
+
+    .section-title i {
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    .profile-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Lists */
+    .cv-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cv-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2px;
+    }
+
+    .cv-item-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .cv-item-subtitle {
+      font-size: 0.9rem;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .cv-item-date {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .cv-item-body {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    /* Two columns */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    /* Skills */
+    .skill-group {
+      margin-bottom: 10px;
+    }
+
+    .skill-group-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .pill {
+      padding: 2px 8px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: #fdfdfd;
+      color: var(--text-muted);
+    }
+
+    .pill.primary {
+      color: var(--primary);
+      border-color: rgba(108, 99, 255, 0.3);
+      background: rgba(108, 99, 255, 0.05);
+    }
+
+    .pill.secondary {
+      color: var(--secondary);
+      border-color: rgba(0, 180, 216, 0.3);
+      background: rgba(0, 180, 216, 0.05);
+    }
+
+    .pill.green {
+      color: var(--green);
+      border-color: rgba(0, 160, 112, 0.3);
+      background: rgba(0, 160, 112, 0.05);
+    }
+
+    .pill.red {
+      color: var(--red);
+      border-color: rgba(224, 74, 96, 0.3);
+      background: rgba(224, 74, 96, 0.05);
+    }
+
+    /* Languages */
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .lang-item:last-child {
+      border-bottom: none;
+    }
+
+    .lang-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .lang-level {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      transition: color 0.3s;
+    }
+
+    .back-btn:hover {
+      color: var(--primary);
+    }
+
+    /* Print formatting */
+    @page {
+      size: A4;
+      margin: 5mm;
+      /* Tight edge margins */
+      padding: 0;
+    }
+
+    @media print {
+      html {
+        font-size: 13px !important;
+        /* Forces scaling down for print specifically */
+      }
+
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .cv-container {
+        box-shadow: none !important;
+        padding: 10px !important;
+        max-width: 100% !important;
+        border: none !important;
+      }
+
+      .back-btn {
+        display: none !important;
+      }
+
+      .section {
+        margin-bottom: 15px !important;
+        page-break-inside: avoid;
+      }
+
+      .header {
+        margin-bottom: 15px !important;
+        padding-bottom: 10px !important;
+      }
+
+      .grid-2 {
+        gap: 15px !important;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="cv-wrapper">
-  <div class="header">
-    <div class="photo"><img src="WhatsApp Image 2025-11-16 at 13.42.34.jpeg" alt=""></div>
-    <div>
-      <h1>Houdaifa Zaidi</h1>
-      <h2>Full-Stack Web Developer in Training</h2>
-      <p>Email: houdaifazaidi04@gmail.com | Phone: +212 6 16 72 11 03</p>
-      <p>Location: Tangier, Morocco</p>
-      <p>Portfolio: <a href="https://houdaifazaidi.github.io/Portfolio" target="_blank">houdaifazaidi.github.io/Portfolio</a></p>
+
+  <div style="max-width: 800px; margin: 0 auto;">
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+  </div>
+
+  <div class="cv-container">
+    <div class="header">
+      <div class="photo">
+        <img src="WhatsApp Image 2025-11-16 at 13.42.34.jpeg" alt="Houdaifa Zaidi">
+      </div>
+      <div>
+        <h1>Houdaifa Zaidi</h1>
+        <div class="subtitle">Full-Stack Web Developer in Training</div>
+        <div class="contact-info">
+          <div><i class="fas fa-envelope"></i> houdaifazaidi04@gmail.com</div>
+          <div><i class="fas fa-phone"></i> +212 6 16 72 11 03</div>
+          <div><i class="fas fa-map-marker-alt"></i> Tangier, Morocco</div>
+          <div><i class="fas fa-globe"></i> <a href="https://houdaifazaidi.github.io/Portfolio"
+              target="_blank">Portfolio Demo</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><i class="fas fa-user-circle"></i> Profile</h2>
+      <p class="profile-text">Aspiring full-stack developer with solid foundations in modern web architecture.
+        Proficient in frontend (React, Blade) and backend (Laravel, Node.js, Python/PHP) development with a strong grasp
+        of Object-Oriented Programming (OOP) principles. Currently pursuing software engineering with a focus on
+        building robust, well-architected systems and intuitive user interfaces.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="column">
+
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+          <div class="cv-list">
+            <div class="cv-item">
+              <div class="cv-item-header">
+                <div>
+                  <div class="cv-item-title">Full-Stack Web Development</div>
+                  <div class="cv-item-subtitle">ISMONTIC, Tangier</div>
+                </div>
+                <div class="cv-item-date">2024 – 2026</div>
+              </div>
+              <div class="cv-item-body">
+                <strong>1st year avg: <span style="color: var(--primary);">18.08 / 20</span></strong>.<br>
+                Focused on practical software engineering, web architectures, databases, and DevOps methodologies.
+              </div>
+            </div>
+
+            <div class="cv-item">
+              <div class="cv-item-header">
+                <div>
+                  <div class="cv-item-title">Scientific Studies (FST)</div>
+                  <div class="cv-item-subtitle">Faculté des Sciences, Tangier</div>
+                </div>
+                <div class="cv-item-date">2023 – 2024</div>
+              </div>
+              <div class="cv-item-body">First Year Science and Engineering core.</div>
+            </div>
+
+            <div class="cv-item">
+              <div class="cv-item-header">
+                <div>
+                  <div class="cv-item-title">Baccalauréat</div>
+                  <div class="cv-item-subtitle">Science Physique (Opt. Français)</div>
+                </div>
+                <div class="cv-item-date">2022 – 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-language"></i> Languages</h2>
+          <div class="cv-list">
+            <div class="lang-item">
+              <span class="lang-name">Arabic</span>
+              <span class="lang-level">Native</span>
+            </div>
+            <div class="lang-item">
+              <span class="lang-name">English</span>
+              <span class="lang-level">Advanced</span>
+            </div>
+            <div class="lang-item">
+              <span class="lang-name">Japanese</span>
+              <span class="lang-level">Advanced</span>
+            </div>
+            <div class="lang-item">
+              <span class="lang-name">French</span>
+              <span class="lang-level">Intermediate</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="column">
+
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-code"></i> Technical Skills</h2>
+
+          <div class="skill-group">
+            <div class="skill-group-name">Frontend</div>
+            <div class="skill-pills">
+              <span class="pill secondary">HTML5 & CSS3</span>
+              <span class="pill secondary">JavaScript ES6+</span>
+              <span class="pill secondary">React.js</span>
+              <span class="pill secondary">Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">Backend</div>
+            <div class="skill-pills">
+              <span class="pill red">Laravel</span>
+              <span class="pill green">Node.js / Express</span>
+              <span class="pill primary">Python</span>
+              <span class="pill red">PHP</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">Database & DevOps</div>
+            <div class="skill-pills">
+              <span class="pill primary">MySQL</span>
+              <span class="pill green">MongoDB</span>
+              <span class="pill">Docker</span>
+              <span class="pill">Git / GitHub</span>
+              <span class="pill">Vercel</span>
+            </div>
+          </div>
+
+          <div class="skill-group" style="margin-bottom:0;">
+            <div class="skill-group-name">Concepts</div>
+            <div class="skill-pills">
+              <span class="pill">OOP</span>
+              <span class="pill">REST APIs</span>
+              <span class="pill">MVC</span>
+              <span class="pill">Agile</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-project-diagram"></i> Featured Experience</h2>
+          <div class="cv-list">
+            <div class="cv-item">
+              <div class="cv-item-title" style="margin-bottom: 2px;">APEX Office & Supplies</div>
+              <div class="cv-item-subtitle">Full-Stack E-Commerce (Laravel)</div>
+              <div class="cv-item-body">
+                Developed an e-commerce platform with elegant UI, catalog routing, cart capabilities, and user
+                management with Laravel/Blade.
+              </div>
+            </div>
+            <div class="cv-item">
+              <div class="cv-item-title" style="margin-bottom: 2px;">HackEvent</div>
+              <div class="cv-item-subtitle">Hackathon Management (React, Node.js)</div>
+              <div class="cv-item-body">
+                Created a system incorporating live participant handling workflows, team formation logic, and a secure
+                admin control dashboard.
+              </div>
+            </div>
+            <div class="cv-item">
+              <div class="cv-item-title" style="margin-bottom: 2px;">Tech Workshop Series</div>
+              <div class="cv-item-subtitle">Educational Content</div>
+              <div class="cv-item-body">
+                Authored practical learning resources and interactive projects covering Laravel, Node.js workflows, and
+                Docker setups.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">Profile</div>
-    <p>Aspiring full-stack developer with solid foundations in modern web architecture. Skilled in React, Python, SQL, MongoDB, and Object-Oriented Programming (OOP). Developing practical experience through structured projects, independent learning, and contributing to web applications. Multilingual: Arabic, English, Japanese, and French.</p>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Education</div>
-    <ul>
-      <li><strong>Baccalauréat</strong> in Science Physique (Option Français), 2022–2023</li>
-      <li><strong>FST (Faculté des Sciences et Techniques de Tanger)</strong> — First Year, 2023–2024</li>
-      <li><strong>ISMONTIC</strong>, Tangier — Full-Stack Web Development Program (2024–2026). First year average: 18.08/20</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Skills</div>
-    <div class="two-col">
-      <div class="col">
-        <strong>Technical Skills</strong>
-        <ul>
-          <li>React (JavaScript)</li>
-          <li>PHP</li>
-          <li>Python</li>
-          <li>SQL (MySQL)</li>
-          <li>MongoDB</li>
-          <li>Object-Oriented Programming (OOP)</li>
-        </ul>
-      </div>
-      <div class="col">
-        <strong>Languages</strong>
-        <ul>
-          <li>Arabic (Native)</li>
-          <li>English (Advanced)</li>
-          <li>Japanese (Advanced)</li>
-          <li>French (Intermediate)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Experience</div>
-    <p>Currently building practical experience through academic projects, personal development, and open-source contributions. Actively practicing full-stack development with React and backend technologies.</p>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Projects</div>
-    <ul>
-      <li>
-        <strong>React Projects Portfolio</strong> — A collection of React projects showcasing components, UI logic, and application structure.
-        <br>
-        <a href="https://houdaifazaidi.github.io/HoudaifaReact/" target="_blank">https://houdaifazaidi.github.io/HoudaifaReact/</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Certifications</div>
-    <ul>
-      <li>Baccalauréat en Science Physique (Option Français)</li>
-    </ul>
-  </div>
-
-</div>
 </body>
+
 </html>
