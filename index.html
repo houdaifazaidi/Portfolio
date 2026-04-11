@@ -366,7 +366,7 @@
         .tech-badge.react { background: rgba(0,212,255,0.1); border-color: rgba(0,212,255,0.2); color: var(--secondary); }
         .tech-badge.docker { background: rgba(44,130,201,0.1); border-color: rgba(44,130,201,0.2); color: #5ab4f0; }
 
-        .card-actions { display: flex; gap: 12px; }
+        .card-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
         .btn-visit {
             display: inline-flex; align-items: center; gap: 8px;
@@ -384,6 +384,26 @@
             box-shadow: 0 0 20px rgba(255,101,132,0.3);
         }
         .featured-card.accent-2 .btn-visit:hover { box-shadow: 0 0 40px rgba(255,101,132,0.4); }
+
+        .btn-repo {
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid rgba(108,99,255,0.35);
+            background: rgba(108,99,255,0.08);
+            color: #a89fff;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            backdrop-filter: blur(6px);
+            transition: all 0.3s;
+        }
+        .btn-repo:hover { border-color: var(--primary); color: #fff; background: rgba(108,99,255,0.2); transform: translateY(-2px); }
+        .featured-card.accent-2 .btn-repo {
+            border-color: rgba(255,101,132,0.35);
+            background: rgba(255,101,132,0.08);
+            color: #ffb3c1;
+        }
+        .featured-card.accent-2 .btn-repo:hover { border-color: #ff6584; color: #fff; background: rgba(255,101,132,0.2); }
 
         /* ───── PROJECTS GRID ───── */
         .projects-grid {
@@ -666,6 +686,7 @@
                         </div>
                         <div class="card-actions">
                             <a href="https://ecomerce-two-delta.vercel.app/" target="_blank" class="btn-visit"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/houdaifazaidi/Ecomerce" target="_blank" class="btn-repo"><i class="fab fa-github"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -686,6 +707,7 @@
                         </div>
                         <div class="card-actions">
                             <a href="https://hack-event-frontend.vercel.app/admin" target="_blank" class="btn-visit"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/houdaifazaidi/HackEvent-backend" target="_blank" class="btn-repo"><i class="fab fa-github"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
