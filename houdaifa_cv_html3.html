@@ -291,15 +291,13 @@
     /* Print formatting */
     @page {
       size: A4;
-      margin: 5mm;
-      /* Tight edge margins */
-      padding: 0;
+      margin: 12mm 15mm; /* top/bottom left/right — gives plenty of room */
     }
 
     @media print {
       html {
-        font-size: 13px !important;
-        /* Forces scaling down for print specifically */
+        /* Use pt units — the native unit for print/PDF rendering */
+        font-size: 11pt !important;
       }
 
       body {
@@ -310,7 +308,7 @@
 
       .cv-container {
         box-shadow: none !important;
-        padding: 10px !important;
+        padding: 0 !important;
         max-width: 100% !important;
         border: none !important;
       }
@@ -320,17 +318,17 @@
       }
 
       .section {
-        margin-bottom: 15px !important;
+        margin-bottom: 12pt !important;
         page-break-inside: avoid;
       }
 
       .header {
-        margin-bottom: 15px !important;
-        padding-bottom: 10px !important;
+        margin-bottom: 12pt !important;
+        padding-bottom: 8pt !important;
       }
 
       .grid-2 {
-        gap: 15px !important;
+        gap: 14pt !important;
       }
 
       * {
@@ -359,8 +357,8 @@
           <div><i class="fas fa-envelope"></i> houdaifazaidi04@gmail.com</div>
           <div><i class="fas fa-phone"></i> +212 6 16 72 11 03</div>
           <div><i class="fas fa-map-marker-alt"></i> Tangier, Morocco</div>
-          <div><i class="fas fa-globe"></i> <a href="https://houdaifazaidi.github.io/Portfolio"
-              target="_blank">Portfolio Demo</a></div>
+          <div><i class="fas fa-globe"></i>Portfolio: <a href="https://houdaifazaidi.github.io/Portfolio"
+              target="_blank"> houdaifazaidi.github.io/Portfolio</a></div>
         </div>
       </div>
     </div>
