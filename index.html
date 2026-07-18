@@ -1114,6 +1114,93 @@
                 align-items: center;
             }
         }
+
+        /* ───── CV DROPDOWN ───── */
+        .cv-dropdown-wrap {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cv-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: rgba(13, 18, 32, 0.97);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 8px;
+            min-width: 180px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            z-index: 9999;
+            animation: dropIn 0.2s ease;
+        }
+
+        @keyframes dropIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .cv-dropdown-menu.open {
+            display: block;
+        }
+
+        .cv-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .cv-dropdown-item:hover {
+            background: rgba(108, 99, 255, 0.15);
+            color: var(--primary);
+        }
+
+        .cv-dropdown-item .flag {
+            font-size: 1.1rem;
+        }
+
+        /* ───── LANG SWITCHER ───── */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 4px 6px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 4px 9px;
+            border-radius: 50px;
+            transition: all 0.25s;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--text);
+        }
     </style>
 </head>
 
@@ -1130,32 +1217,48 @@
     <nav id="navbar">
         <div class="logo">HZ.</div>
         <div class="nav-links" id="navLinks">
-            <a href="#about">About</a>
-            <a href="#featured">Work</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-            <a href="houdaifa_cv_html3.html" class="nav-cta">View CV</a>
+            <a href="#about" data-i18n="nav_about">About</a>
+            <a href="#featured" data-i18n="nav_work">Work</a>
+            <a href="#projects" data-i18n="nav_projects">Projects</a>
+            <a href="#skills" data-i18n="nav_skills">Skills</a>
+            <a href="#contact" data-i18n="nav_contact">Contact</a>
+            <!-- CV Dropdown -->
+            <div class="cv-dropdown-wrap" id="cvDropdownWrap">
+                <a href="#" class="nav-cta" id="cvDropdownBtn" onclick="toggleCVDropdown(event)" data-i18n="nav_cv">View CV <i class="fas fa-chevron-down" style="font-size:0.7rem;margin-left:4px;"></i></a>
+                <div class="cv-dropdown-menu" id="cvDropdownMenu">
+                    <a href="houdaifa_cv_html3.html" class="cv-dropdown-item" target="_blank">
+                        <span class="flag">🇬🇧</span> English Version
+                    </a>
+                    <a href="houdaifa_cv_fr.html" class="cv-dropdown-item" target="_blank">
+                        <span class="flag">🇫🇷</span> Version Française
+                    </a>
+                </div>
+            </div>
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" id="btnFR" onclick="setLang('fr')">FR</button>
+            </div>
         </div>
         <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
     </nav>
 
     <!-- HERO -->
     <header class="hero" id="home">
-        <div class="availability-badge">
+        <div class="availability-badge" id="heroBadge">
             <span class="dot"></span>
             Open to Work &amp; Internships
         </div>
         <div class="profile-ring">
-            <img src="WhatsApp Image 2026-06-18 at 12.51.54.jpeg" alt="Houdaifa Zaidi">
+            <img src="file_00000000dc0c81f4b975073504acb980.png" alt="Houdaifa Zaidi">
         </div>
         <h1><span class="name-color">Houdaifa Zaidi</span></h1>
         <p class="hero-subtitle">I build <span class="typewriter-wrap" id="typewriter"></span></p>
-        <p class="hero-desc">Full-Stack Developer based in <strong>Tangier, Morocco</strong> — crafting modern web
+        <p class="hero-desc" id="heroDesc">Full-Stack Developer based in <strong>Tangier, Morocco</strong> — crafting modern web
             applications with clean architecture and great user experiences.</p>
         <div class="hero-btns">
-            <a href="#featured" class="btn-primary"><i class="fas fa-rocket"></i> See My Work</a>
-            <a href="#contact" class="btn-outline"><i class="fas fa-comment-dots"></i> Get In Touch</a>
+            <a href="#featured" class="btn-primary" id="heroBtn1"><i class="fas fa-rocket"></i> See My Work</a>
+            <a href="#contact" class="btn-outline" id="heroBtn2"><i class="fas fa-comment-dots"></i> Get In Touch</a>
         </div>
         <div class="social-row">
             <a href="https://github.com/houdaifazaidi" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -1173,8 +1276,8 @@
     <!-- ★ FEATURED / BEST WORK ★ -->
     <div id="featured">
         <div class="featured-inner">
-            <div class="section-tag">Best Work</div>
-            <h2 class="section-title">Featured Projects</h2>
+            <div class="section-tag" id="featuredTag">Best Work</div>
+            <h2 class="section-title" id="featuredTitle">Featured Projects</h2>
             <div class="section-line"></div>
             <div class="featured-grid">
 
@@ -1236,8 +1339,8 @@
 
     <!-- OTHER PROJECTS -->
     <section id="projects">
-        <div class="section-tag">Portfolio</div>
-        <h2 class="section-title">Other Projects</h2>
+        <div class="section-tag" id="projectsTag">Portfolio</div>
+        <h2 class="section-title" id="projectsTitle">Other Projects</h2>
         <div class="section-line"></div>
         <div class="projects-grid">
 
@@ -1342,39 +1445,40 @@
 
     <!-- ABOUT -->
     <section id="about">
-        <div class="section-tag">Who I Am</div>
-        <h2 class="section-title">About Me</h2>
+        <div class="section-tag" id="aboutTag">Who I Am</div>
+        <h2 class="section-title" id="aboutTitle">About Me</h2>
         <div class="section-line"></div>
         <div class="about-grid">
             <div class="about-text">
-                <p>I'm an aspiring <strong>Full-Stack Developer</strong> currently in my second year at
+                <p id="aboutP1">I'm a <strong>Full-Stack Developer</strong> who completed training at
                     <strong>ISMONTIC</strong>, Tangier. I combine a scientific background in Physical Sciences with a
-                    rigorous approach to software engineering.</p>
-                <p>I don't just write code — I strive to understand the architecture behind systems, from database
+                    rigorous approach to software engineering.
+                </p>
+                <p id="aboutP2">I don't just write code — I strive to understand the architecture behind systems, from database
                     modeling to UI/UX decisions. I enjoy building things that are both technically solid and visually
                     delightful.</p>
 
                 <div class="stat-cards">
                     <div class="stat-item">
-                        <div class="stat-num">18.08</div>
-                        <div class="stat-label">/ 20 First Year Average</div>
-                    </div>
-                    <div class="stat-item">
                         <div class="stat-num">7+</div>
-                        <div class="stat-label">Projects Shipped</div>
+                        <div class="stat-label" data-i18n="stat_projects">Projects Shipped</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-num">4</div>
-                        <div class="stat-label">Languages Spoken</div>
+                        <div class="stat-label" data-i18n="stat_languages">Languages Spoken</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-num">2+</div>
-                        <div class="stat-label">Years of Coding</div>
+                        <div class="stat-label" data-i18n="stat_coding">Years of Coding</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">2</div>
+                        <div class="stat-label" data-i18n="stat_bac">Baccalauréats</div>
                     </div>
                 </div>
 
                 <div style="margin-top: 36px;">
-                    <h4
+                    <h4 id="langProficiencyTitle"
                         style="font-weight: 700; margin-bottom: 16px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted);">
                         Language Proficiency</h4>
                     <div class="lang-grid">
@@ -1398,32 +1502,31 @@
                 <div class="about-stat-card">
                     <div class="about-card-icon g"><i class="fas fa-university"></i></div>
                     <div>
-                        <h4>Top Performance at ISMONTIC</h4>
-                        <p>Achieved a remarkable first-year average of <span class="highlight">18.08 / 20</span>,
-                            ranking among the top students in the program.</p>
+                        <h4 data-i18n="about_card1_title">Dual Academic Achievement</h4>
+                        <p data-i18n="about_card1_desc">Completed a Full-Stack Web Development degree at ISMONTIC while simultaneously earning a second Baccalauréat in Lettres &amp; Sciences Humaines.</p>
                     </div>
                 </div>
                 <div class="about-stat-card">
                     <div class="about-card-icon p"><i class="fas fa-layer-group"></i></div>
                     <div>
-                        <h4>Full-Stack Versatility</h4>
-                        <p>Proficient in both frontend (React, Blade) and backend (Laravel, Node.js, Python/PHP)
+                        <h4 data-i18n="about_card2_title">Full-Stack Versatility</h4>
+                        <p data-i18n="about_card2_desc">Proficient in both frontend (React, Blade) and backend (Laravel, Node.js, Python/PHP)
                             development with a strong grasp of OOP principles.</p>
                     </div>
                 </div>
                 <div class="about-stat-card">
                     <div class="about-card-icon o"><i class="fas fa-cubes"></i></div>
                     <div>
-                        <h4>DevOps Awareness</h4>
-                        <p>Experienced with Docker containerization, Git workflows, CI/CD pipelines, and cloud
+                        <h4 data-i18n="about_card3_title">DevOps Awareness</h4>
+                        <p data-i18n="about_card3_desc">Experienced with Docker containerization, Git workflows, CI/CD pipelines, and cloud
                             deployments on Vercel.</p>
                     </div>
                 </div>
                 <div class="about-stat-card">
                     <div class="about-card-icon p"><i class="fas fa-globe"></i></div>
                     <div>
-                        <h4>Multilingual Communicator</h4>
-                        <p>Fluent in Arabic, English, and Japanese — enabling cross-cultural collaboration on
+                        <h4 data-i18n="about_card4_title">Multilingual Communicator</h4>
+                        <p data-i18n="about_card4_desc">Fluent in Arabic, English, and Japanese — enabling cross-cultural collaboration on
                             international teams.</p>
                     </div>
                 </div>
@@ -1436,8 +1539,8 @@
     <!-- SKILLS -->
     <div id="skills">
         <div class="skills-inner">
-            <div class="section-tag">My Arsenal</div>
-            <h2 class="section-title">Technical Skills</h2>
+            <div class="section-tag" id="skillsTag">My Arsenal</div>
+            <h2 class="section-title" id="skillsTitle">Technical Skills</h2>
             <div class="section-line"></div>
             <div class="skills-grid">
                 <div class="skill-group">
@@ -1488,10 +1591,10 @@
     <div id="contact">
         <div class="contact-inner">
             <div class="contact-box">
-                <div class="section-tag" style="margin-bottom: 20px;">Let's Connect</div>
-                <h2>Ready to Build<br>Something Great?</h2>
-                <p>I'm currently looking for internship or apprenticeship opportunities. Let's talk!</p>
-                <a href="mailto:houdaifazaidi04@gmail.com" class="btn-primary"
+                <div class="section-tag" style="margin-bottom: 20px;" data-i18n="contact_tagline">Let's Connect</div>
+                <h2 id="contactH2">Ready to Build<br>Something Great?</h2>
+                <p id="contactP">I'm currently looking for internship or apprenticeship opportunities. Let's talk!</p>
+                <a href="mailto:houdaifazaidi04@gmail.com" class="btn-primary" id="contactEmailBtn"
                     style="margin: 0 auto 30px; display: inline-flex;">
                     <i class="fas fa-paper-plane"></i> Send Me an Email
                 </a>
@@ -1505,16 +1608,160 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 <span>Houdaifa Zaidi</span>. Designed &amp; Developed with passion.</p>
+        <p id="footerText">&copy; 2026 <span>Houdaifa Zaidi</span>. Designed &amp; Developed with passion.</p>
     </footer>
 
     <script>
-        // Typewriter
-        const phrases = ["Modern Web Apps.", "Laravel Backends.", "React Frontends.", "Node.js APIs.", "Dockerized Systems."];
+        // ─── i18n data ───
+        const translations = {
+            en: {
+                nav_about: 'About',
+                nav_work: 'Work',
+                nav_projects: 'Projects',
+                nav_skills: 'Skills',
+                nav_contact: 'Contact',
+                nav_cv: 'View CV',
+                hero_badge: 'Open to Work & Internships',
+                hero_desc: 'Full-Stack Developer based in <strong>Tangier, Morocco</strong> — crafting modern web applications with clean architecture and great user experiences.',
+                hero_btn1: 'See My Work',
+                hero_btn2: 'Get In Touch',
+                stat_projects: 'Projects Shipped',
+                stat_languages: 'Languages Spoken',
+                stat_coding: 'Years of Coding',
+                stat_bac: 'Baccalauréats',
+                about_tag: 'Who I Am',
+                about_title: 'About Me',
+                about_p1: 'I\'m a <strong>Full-Stack Developer</strong> who completed training at <strong>ISMONTIC</strong>, Tangier. I combine a scientific background in Physical Sciences with a rigorous approach to software engineering.',
+                about_p2: 'I don\'t just write code — I strive to understand the architecture behind systems, from database modeling to UI/UX decisions. I enjoy building things that are both technically solid and visually delightful.',
+                about_card1_title: 'Dual Academic Achievement',
+                about_card1_desc: 'Completed a Full-Stack Web Development degree at ISMONTIC while simultaneously earning a second Baccalauréat in Lettres & Sciences Humaines.',
+                about_card2_title: 'Full-Stack Versatility',
+                about_card2_desc: 'Proficient in both frontend (React, Blade) and backend (Laravel, Node.js, Python/PHP) development with a strong grasp of OOP principles.',
+                about_card3_title: 'DevOps Awareness',
+                about_card3_desc: 'Experienced with Docker containerization, Git workflows, CI/CD pipelines, and cloud deployments on Vercel.',
+                about_card4_title: 'Multilingual Communicator',
+                about_card4_desc: 'Fluent in Arabic, English, and Japanese — enabling cross-cultural collaboration on international teams.',
+                lang_proficiency: 'Language Proficiency',
+                contact_tagline: 'Let\'s Connect',
+                contact_h2: 'Ready to Build<br>Something Great?',
+                contact_p: 'I\'m currently looking for internship or apprenticeship opportunities. Let\'s talk!',
+                contact_email_btn: 'Send Me an Email',
+                footer: '© 2026 <span>Houdaifa Zaidi</span>. Designed & Developed with passion.',
+                scroll_hint: 'SCROLL',
+                skills_tag: 'My Arsenal',
+                skills_title: 'Technical Skills',
+                featured_tag: 'Best Work',
+                featured_title: 'Featured Projects',
+                projects_tag: 'Portfolio',
+                projects_title: 'Other Projects',
+                availability: 'Open to Work & Internships',
+            },
+            fr: {
+                nav_about: 'À propos',
+                nav_work: 'Travaux',
+                nav_projects: 'Projets',
+                nav_skills: 'Compétences',
+                nav_contact: 'Contact',
+                nav_cv: 'Voir CV',
+                hero_badge: 'Ouvert aux offres & stages',
+                hero_desc: 'Développeur Full-Stack basé à <strong>Tanger, Maroc</strong> — créant des applications web modernes avec une architecture propre et une excellente expérience utilisateur.',
+                hero_btn1: 'Voir mes travaux',
+                hero_btn2: 'Me contacter',
+                stat_projects: 'Projets livrés',
+                stat_languages: 'Langues parlées',
+                stat_coding: 'Années de code',
+                stat_bac: 'Baccalauréats',
+                about_tag: 'Qui suis-je',
+                about_title: 'À propos de moi',
+                about_p1: 'Je suis un <strong>Développeur Full-Stack</strong> diplômé de <strong>l\'ISMONTIC</strong>, Tanger. J\'allie une formation scientifique en Sciences Physiques à une approche rigoureuse du génie logiciel.',
+                about_p2: 'Je ne me contente pas d\'écrire du code — je m\'efforce de comprendre l\'architecture des systèmes, de la modélisation de données aux décisions UI/UX. J\'aime construire des choses à la fois techniquement solides et visuellement agréables.',
+                about_card1_title: 'Double réussite académique',
+                about_card1_desc: 'Formation en développement web Full-Stack à l\'ISMONTIC, obtenue simultanément avec un second Baccalauréat en Lettres & Sciences Humaines.',
+                about_card2_title: 'Polyvalence Full-Stack',
+                about_card2_desc: 'Maîtrise du frontend (React, Blade) et du backend (Laravel, Node.js, Python/PHP) avec une solide compréhension des principes POO.',
+                about_card3_title: 'Sensibilisation DevOps',
+                about_card3_desc: 'Expérience avec Docker, les workflows Git, les pipelines CI/CD et les déploiements cloud sur Vercel.',
+                about_card4_title: 'Communicant multilingue',
+                about_card4_desc: 'Maîtrise de l\'arabe, de l\'anglais et du japonais — permettant une collaboration interculturelle au sein d\'équipes internationales.',
+                lang_proficiency: 'Maîtrise des langues',
+                contact_tagline: 'Travaillons ensemble',
+                contact_h2: 'Prêt à construire<br>quelque chose de grand ?',
+                contact_p: 'Je recherche actuellement des opportunités de stage ou d\'apprentissage. Discutons !',
+                contact_email_btn: 'M\'envoyer un e-mail',
+                footer: '© 2026 <span>Houdaifa Zaidi</span>. Conçu & développé avec passion.',
+                scroll_hint: 'DÉFILER',
+                skills_tag: 'Mon arsenal',
+                skills_title: 'Compétences Techniques',
+                featured_tag: 'Meilleurs travaux',
+                featured_title: 'Projets phares',
+                projects_tag: 'Portfolio',
+                projects_title: 'Autres projets',
+                availability: 'Ouvert aux offres & stages',
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            // Nav
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            // Special elements
+            document.getElementById('heroBadge').innerHTML = '<span class="dot"></span>' + t.availability;
+            document.getElementById('heroDesc').innerHTML = t.hero_desc;
+            document.getElementById('heroBtn1').innerHTML = '<i class="fas fa-rocket"></i> ' + t.hero_btn1;
+            document.getElementById('heroBtn2').innerHTML = '<i class="fas fa-comment-dots"></i> ' + t.hero_btn2;
+            document.getElementById('aboutP1').innerHTML = t.about_p1;
+            document.getElementById('aboutP2').innerHTML = t.about_p2;
+            document.getElementById('contactEmailBtn').innerHTML = '<i class="fas fa-paper-plane"></i> ' + t.contact_email_btn;
+            document.getElementById('contactH2').innerHTML = t.contact_h2;
+            document.getElementById('contactP').innerHTML = t.contact_p;
+            document.getElementById('footerText').innerHTML = t.footer;
+            document.getElementById('featuredTag').innerHTML = t.featured_tag;
+            document.getElementById('featuredTitle').innerHTML = t.featured_title;
+            document.getElementById('projectsTag').innerHTML = t.projects_tag;
+            document.getElementById('projectsTitle').innerHTML = t.projects_title;
+            document.getElementById('skillsTag').innerHTML = t.skills_tag;
+            document.getElementById('skillsTitle').innerHTML = t.skills_title;
+            document.getElementById('aboutTag').innerHTML = t.about_tag;
+            document.getElementById('aboutTitle').innerHTML = t.about_title;
+            document.getElementById('langProficiencyTitle').innerHTML = t.lang_proficiency;
+            // Buttons
+            document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+            document.getElementById('btnFR').classList.toggle('active', lang === 'fr');
+            // CV dropdown items
+            const items = document.querySelectorAll('.cv-dropdown-item');
+            if (items[0]) items[0].innerHTML = '<span class="flag">🇬🇧</span> English Version';
+            if (items[1]) items[1].innerHTML = '<span class="flag">🇫🇷</span> Version Française';
+            // html lang
+            document.documentElement.lang = lang;
+        }
+
+        // ─── CV dropdown ───
+        function toggleCVDropdown(e) {
+            e.preventDefault();
+            document.getElementById('cvDropdownMenu').classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            const wrap = document.getElementById('cvDropdownWrap');
+            if (wrap && !wrap.contains(e.target)) {
+                document.getElementById('cvDropdownMenu').classList.remove('open');
+            }
+        });
+
+        // ─── Typewriter ───
+        const phrasesSets = {
+            en: ["Modern Web Apps.", "Laravel Backends.", "React Frontends.", "Node.js APIs.", "Dockerized Systems."],
+            fr: ["Apps Web Modernes.", "Backends Laravel.", "Frontends React.", "APIs Node.js.", "Systèmes Docker."]
+        };
         let i = 0;
         function typingEffect() {
             const el = document.getElementById("typewriter");
-            let phrase = phrases[i], k = 0;
+            let phrase = phrasesSets[currentLang][i % phrasesSets[currentLang].length], k = 0;
             el.innerHTML = "";
             let type = setInterval(() => {
                 el.innerHTML += phrase.charAt(k++);
@@ -1526,17 +1773,17 @@
             let k = el.innerHTML.length;
             let del = setInterval(() => {
                 el.innerHTML = el.innerHTML.substring(0, k--);
-                if (k < 0) { clearInterval(del); i = (i + 1) % phrases.length; typingEffect(); }
+                if (k < 0) { clearInterval(del); i = (i + 1) % phrasesSets[currentLang].length; typingEffect(); }
             }, 45);
         }
         document.addEventListener('DOMContentLoaded', typingEffect);
 
-        // Mobile menu
+        // ─── Mobile menu ───
         document.getElementById('hamburger').addEventListener('click', () => {
             document.getElementById('navLinks').classList.toggle('open');
         });
 
-        // Scroll-based nav style
+        // ─── Scroll-based nav style ───
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             nav.style.background = window.scrollY > 60
@@ -1544,7 +1791,7 @@
                 : 'rgba(8,12,20,0.7)';
         });
 
-        // Scroll reveal
+        // ─── Scroll reveal ───
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => {
                 if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
